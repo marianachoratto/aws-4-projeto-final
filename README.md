@@ -17,6 +17,9 @@ O fluxo de dados deste projeto é 100% orientado a eventos (event-driven).
 
 > **Upload no S3 ➔ Trigger aciona a Lambda ➔ Lambda lê o arquivo ➔ Lambda salva no DynamoDB**
 
+ <img width="766" height="385" alt="image" src="https://github.com/user-attachments/assets/987e9691-c5d4-47b3-9018-29def54b406d" />
+
+
 1.  **S3 (Simple Storage Service):** Um bucket chamado `notas-fiscais-upload` é configurado para armazenar os arquivos JSON de entrada.
 2.  **S3 Event Notification (Trigger):** O bucket S3 é configurado para disparar um evento `s3:ObjectCreated:*` sempre que um novo arquivo é salvo.
 3.  **Lambda (Função `ProcessarNotasFiscais`):** Esta função Python é o "cérebro" da operação. Ela é acionada pelo evento do S3, recebe a notificação, usa essa informação para baixar o arquivo JSON do S3, lê seu conteúdo (um array de notas) e faz um loop, inserindo cada nota no DynamoDB.
